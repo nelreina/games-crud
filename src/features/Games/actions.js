@@ -1,5 +1,5 @@
+import { setSystemHttpError } from '../../System/actions';
 export const fetchGames = () => {
-  console.log('Fetching games...');
   return dispatch => {
     fetch('/api/games')
       .then( resp => {
@@ -7,13 +7,15 @@ export const fetchGames = () => {
         if (resp.status === 200) {
           return resp.json()
         } else {
-          throw Error('Some HTTP Error')
+          dispatch(setSystemHttpError(resp.status));
+          const data= { games: [] };
+          return { data };
         }
       })
       .then( data => dispatch({ type: 'FETCH_GAMES_COMPLETED', games: data.games }))
-      .catch(error => {
-        console.log(error);
-        dispatch({type: 'FETCH_GAMES_ERROR', error })
+      .catch(message => {
+        console.log(message);
+        dispatch({type: 'SYSTEM_UNKNOWN_ERROR', message })
       })
   }
 }

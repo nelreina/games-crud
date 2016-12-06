@@ -1,47 +1,46 @@
 import React, { Component } from 'react';
-import { Link, Match } from 'react-router';
-import './App.css';
+import { Match } from 'react-router';
 import classnames from 'classnames';
+import { connect } from 'react-redux';
+
+import './App.css';
 import Games from './features/Games';
 import AddNewForm from './features/Games/AddNewForm';
 import UIMessage from './components/UIMessage';
-
+import UILink from './components/UILink';
+import { clearMessage } from './System/actions';
 class App extends Component {
-  state = { systemError: false };
-  toggleSystemError = () => {
-    this.setState( { systemError: !this.state.systemError } )
-  }
   render() {
-    const { systemError } = this.state;
-    const segmentClass = classnames('ui', 'basic segment', { disabled: systemError, loading: systemError });
-    const menuItemClass = classnames('item', { disabled: systemError });
+    const { systemError, message } = this.props.system;
+    const segmentClass = classnames('ui basic segment', { disabled: systemError });
     return (
-      <div className="ui container">
+      <div className="ui center aligned container">
         <UIMessage
-          floating
+          massive
           state={systemError ? 'visible' : 'hidden'}
-          title='Sytem Error'
-          variation='error'
-          icon="warning"
+          title={message && message.title}
+          variation={message && message.variation}
           >
-          System is offline at this moment
+          {message && message.text}
         </UIMessage>
         <div className={segmentClass}>
-          <h1>Crud Games</h1>
           <div className="ui menu three item">
-            <Link activeOnlyWhenExact to="/" className={menuItemClass} activeClassName="active">Home</Link>
-            <Link activeOnlyWhenExact to="/games" className={menuItemClass} activeClassName="active">Games</Link>
-            <Link activeOnlyWhenExact to="/games/new" className={menuItemClass} activeClassName="active">Add new Game</Link>
+            <UILink to="/" disabled={systemError}>Home</UILink>
+            <UILink to="/games" disabled={systemError}>Games</UILink>
+            <UILink to="/games/new" disabled={systemError}>New Game</UILink>
           </div>
           <Match exactly pattern="/games" component={Games}/>
           <Match pattern="/games/new" component={AddNewForm} />
         </div>
-        <button className="ui button red large" onClick={this.toggleSystemError}>
-          Toggle system error { systemError ? 'OFF' : 'ON'}
-        </button>
+        {
+          systemError &&
+          <button className="ui button red large" onClick={this.props.clearMessage}>
+            Clear Error
+          </button>
+        }
       </div>
     );
   }
 }
-
-export default App;
+const mstp = (state) => ({system: state.system});
+export default connect(mstp, { clearMessage })(App);
