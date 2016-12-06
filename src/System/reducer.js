@@ -1,9 +1,12 @@
 export default (state={}, action ) => {
-  let error = {};
   switch (action.type) {
     case 'SYSTEM_HTTP_ERROR':
-      return action.payload
+      const { message } = action;
+      return { message }
+    case 'SYSTEM_CLEAR_MESSAGE':
+      delete state.message;
+      return {...state }
     default:
-
+			return state;
   }
 }
