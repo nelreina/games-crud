@@ -10,13 +10,13 @@ class GamesPage extends Component {
     const { notisia } = this.props;
     return (
       <div className="ui three column stackable grid">
-        <div className="column four wide"></div>
+        <div className="column five wide"></div>
         <div className="column eight wide">
           {
-            notisia.map((game, idx) => <NotisiaItem key={idx} {...game} />)
+            notisia.map((noti, idx) => <NotisiaItem key={idx} {...noti} />)
           }
         </div>
-        <div className="column four wide"></div>
+        <div className="column three wide"></div>
       </div>
     )
   }

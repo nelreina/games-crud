@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import Notisia from './features/Notisia';
+import Videos from './features/Videos';
+import Intro from './features/Intro';
 import AddNewForm from './features/Notisia/AddNewForm';
 import UIMessage from './components/UIMessage';
-import UILink from './components/UILink';
+import MainMenu from './components/MainMenu';
 import { clearMessage } from './System/actions';
 class App extends Component {
   render() {
@@ -24,12 +26,10 @@ class App extends Component {
           {message && message.text}
         </UIMessage>
         <div className={segmentClass}>
-          <div className="ui menu inverted three item">
-            <UILink to="/" disabled={systemError}>Introdukshon</UILink>
-            <UILink to="/notisia" disabled={systemError}>Notisia Awe</UILink>
-            <UILink to="/notisia/nobo" disabled={systemError}>Skibi un Nobo</UILink>
-          </div>
+          <MainMenu disabled={systemError}/>
+          <Match exactly pattern="/" component={Intro}/>
           <Match exactly pattern="/notisia" component={Notisia}/>
+          <Match exactly pattern="/videos" component={Videos}/>
           <Match pattern="/notisia/nobo" component={AddNewForm} />
         </div>
         {

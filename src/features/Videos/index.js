@@ -1,8 +1,9 @@
 import React from 'react';
 import UIHeader from '../../components/UIHeader';
 
-export default () => (
+
+export default (props) => (
   <div>
-    <UIHeader>Add new Form</UIHeader>
+    <UIHeader>Videos</UIHeader>
   </div>
 )

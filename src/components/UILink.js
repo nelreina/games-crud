@@ -11,7 +11,7 @@ export default (props) => {
       className={itemClass}
       activeOnlyWhenExact
       activeClassName="active">
-      {children}
+      {children.toUpperCase()}
     </Link>
   const item = <div className={itemClass}>{children}</div>
   return disabled ? item : link
