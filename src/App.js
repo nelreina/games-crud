@@ -4,8 +4,8 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 
 import './App.css';
-import Games from './features/Games';
-import AddNewForm from './features/Games/AddNewForm';
+import Notisia from './features/Notisia';
+import AddNewForm from './features/Notisia/AddNewForm';
 import UIMessage from './components/UIMessage';
 import UILink from './components/UILink';
 import { clearMessage } from './System/actions';
@@ -14,7 +14,7 @@ class App extends Component {
     const { systemError, message } = this.props.system;
     const segmentClass = classnames('ui basic segment', { disabled: systemError });
     return (
-      <div className="ui center aligned container">
+      <div className="ui container">
         <UIMessage
           massive
           state={systemError ? 'visible' : 'hidden'}
@@ -24,13 +24,13 @@ class App extends Component {
           {message && message.text}
         </UIMessage>
         <div className={segmentClass}>
-          <div className="ui menu three item">
-            <UILink to="/" disabled={systemError}>Home</UILink>
-            <UILink to="/games" disabled={systemError}>Games</UILink>
-            <UILink to="/games/new" disabled={systemError}>New Game</UILink>
+          <div className="ui menu inverted three item">
+            <UILink to="/" disabled={systemError}>Introdukshon</UILink>
+            <UILink to="/notisia" disabled={systemError}>Notisia Awe</UILink>
+            <UILink to="/notisia/nobo" disabled={systemError}>Skibi un Nobo</UILink>
           </div>
-          <Match exactly pattern="/games" component={Games}/>
-          <Match pattern="/games/new" component={AddNewForm} />
+          <Match exactly pattern="/notisia" component={Notisia}/>
+          <Match pattern="/notisia/nobo" component={AddNewForm} />
         </div>
         {
           systemError &&
