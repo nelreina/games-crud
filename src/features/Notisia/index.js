@@ -9,15 +9,11 @@ class GamesPage extends Component {
   render() {
     const { notisia } = this.props;
     return (
-      <div className="ui three column stackable grid">
-        <div className="column five wide"></div>
-        <div className="column eight wide">
+        <div className="">
           {
             notisia.map((noti, idx) => <NotisiaItem key={idx} {...noti} />)
           }
         </div>
-        <div className="column three wide"></div>
-      </div>
     )
   }
 }

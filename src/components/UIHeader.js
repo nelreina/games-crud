@@ -19,6 +19,9 @@ export default (props) => {
       header = <h1 className={headerClass}>{children}</h1>
   }
 
-  return header;
-
+  return (
+    <div className="ui segment basic">
+      {header};
+    </div>
+  )
 }

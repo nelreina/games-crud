@@ -11,6 +11,7 @@ import AddNewForm from './features/Notisia/AddNewForm';
 import UIMessage from './components/UIMessage';
 import MainMenu from './components/MainMenu';
 import { clearMessage } from './System/actions';
+
 class App extends Component {
   render() {
     const { systemError, message } = this.props.system;
@@ -27,10 +28,26 @@ class App extends Component {
         </UIMessage>
         <div className={segmentClass}>
           <MainMenu disabled={systemError}/>
-          <Match exactly pattern="/" component={Intro}/>
-          <Match exactly pattern="/notisia" component={Notisia}/>
-          <Match exactly pattern="/videos" component={Videos}/>
-          <Match pattern="/notisia/nobo" component={AddNewForm} />
+            <div className="ui four column stackable grid">
+              <div className="column four wide">
+                <div className="ui pega segment">
+                  Side bar
+                </div>
+              </div>
+              <div className="column seven wide">
+                <Match exactly pattern="/" component={Intro}/>
+                <Match exactly pattern="/notisia" component={Notisia}/>
+                <Match exactly pattern="/videos" component={Videos}/>
+                <Match pattern="/notisia/nobo" component={AddNewForm} />
+              </div>
+              <div className="column five wide">
+                <div className="ui pega fluid segment">
+                  &nbsp;
+                  Profesional
+                </div>
+              </div>
+
+            </div>
         </div>
         {
           systemError &&
