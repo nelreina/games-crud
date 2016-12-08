@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 // import S from 'string';
-export default (
+const NotisiaItem = (
   { titulo,
     kategoria,
     origen,
@@ -29,3 +29,4 @@ export default (
     </button>
   </div>
 )}
+export default NotisiaItem

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchGames } from './actions';
 import NotisiaItem from './NotisiaItem';
-class GamesPage extends Component {
+class NotisiaPage extends Component {
   componentDidMount = () => {
     this.props.fetchGames();
   }
@@ -19,4 +19,4 @@ class GamesPage extends Component {
 }
 
 const mstp = state => ({ notisia: state.notisianan });
-export default connect( mstp, { fetchGames })(GamesPage);
+export default connect( mstp, { fetchGames })(NotisiaPage);

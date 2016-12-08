@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Match } from 'react-router';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
+import Sticky from 'react-stickynode';
 
 import './App.css';
 import Notisia from './features/Notisia';
@@ -29,22 +30,39 @@ class App extends Component {
         <div className={segmentClass}>
           <MainMenu disabled={systemError}/>
             <div className="ui four column stackable grid">
-              <div className="column four wide">
-                <div className="ui pega segment">
-                  Side bar
-                </div>
+              <div className="column computer only four wide">
+								<Sticky enabled top={50}>
+									<div className="">
+										<ul className="ui vertical menu">
+										  <li className="item">
+										    <a href="#1">Hudisial</a>
+										  </li>
+										  <li className="item">
+										    <a href="#2">Lokal</a>
+										  </li>
+										  <li className="item">
+										    <a href="#3">Internashonal</a>
+										  </li>
+										  <li className="item">
+										    <a href="#4">Polis</a>
+										  </li>
+										</ul>
+									</div>
+								</Sticky>
               </div>
-              <div className="column seven wide">
+              <div className="column seven wide computer nine wide tablet">
                 <Match exactly pattern="/" component={Intro}/>
                 <Match exactly pattern="/notisia" component={Notisia}/>
                 <Match exactly pattern="/videos" component={Videos}/>
                 <Match pattern="/notisia/nobo" component={AddNewForm} />
               </div>
-              <div className="column five wide">
-                <div className="ui pega fluid segment">
-                  &nbsp;
-                  Profesional
-                </div>
+              <div className="column five wide computer seven wide tablet">
+                <Sticky top={50}>
+                  <div className="ui pega fluid segment">
+                    &nbsp;
+                    Profesional
+                  </div>
+                </Sticky>
               </div>
 
             </div>
