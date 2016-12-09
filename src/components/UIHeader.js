@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 export default (props) => {
-	const headerClass = classnames('ui header', 'inverted', 'center aligned');
+	const headerClass = classnames('ui header', 'inverted', 'center aligned', props);
   const { h1, h2, h3, h4, children } = props;
 	let header;
 
@@ -21,7 +21,7 @@ export default (props) => {
 
   return (
     <div className="ui segment basic">
-      {header};
+      {header}
     </div>
   )
 }

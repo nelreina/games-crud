@@ -23,6 +23,12 @@ MongoClient.connect(dbUrl, (err, db) => {
       res.json({ notisianan: jsonNoti });
     });
   });
+  app.get('/api/video', (req, res) => {
+    console.log(`${moment().format()}: get video`);
+    db.collection('videonan').find({}).toArray( (err, videonan) =>{
+      res.json({ videonan });
+    });
+  });
 
   app.listen(8080, _ => console.log('Backend started on port 8080'));
 })
