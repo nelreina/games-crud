@@ -7,16 +7,16 @@ class NotisiaPage extends Component {
     this.props.fetchGames();
   }
   render() {
-    const { notisia } = this.props;
+    const { notisianan } = this.props;
     return (
         <div className="">
           {
-            notisia.map((noti, idx) => <NotisiaItem key={idx} {...noti} />)
+            notisianan.map((noti, idx) => <NotisiaItem key={idx} {...noti} />)
           }
         </div>
     )
   }
 }
 
-const mstp = state => ({ notisia: state.notisianan });
+const mstp = ({ notisianan }) => ({ notisianan });
 export default connect( mstp, { fetchGames })(NotisiaPage);
